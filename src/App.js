@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Editor from "@monaco-editor/react";
 import remarkGfm from "remark-gfm";
@@ -44,7 +43,7 @@ function App() {
           Download
         </button>
       </nav>
-      <div className="w-full flex gap-5 h-full border">
+      <div className="grid gird-cols-1 lg:grid-cols-2 border">
         <Editor
           height="80vh"
           defaultLangauge="markdown"
@@ -55,12 +54,12 @@ function App() {
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}
-          className="w-full h-[80vh] border-l-2 border-gray-300 p-5 prose prose-sm overflow-scroll"
+          className="w-full h-[80vh] border-l border-gray-300 p-5 prose prose-sm max-w-none overflow-scroll"
         >
           {value}
         </ReactMarkdown>
       </div>
-      <footer className="text-center mt-2 text-gray-800 text-sm">
+      <footer className="text-center mt-2 text-gray-800 text-sm mb-2">
         <a href="https://github.com/qu1etboy" target="_blank" rel="noreferrer">
           @qu1etboy.
         </a>{" "}
