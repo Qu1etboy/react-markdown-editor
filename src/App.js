@@ -20,11 +20,27 @@ function App() {
     window.localStorage.setItem("value", value);
   }, [value]);
 
+  const handleDownload = () => {
+    // create fileUrl from blob
+    const blob = new Blob([value]);
+    const fileUrl = URL.createObjectURL(blob);
+    // create download link
+    const link = document.createElement("a");
+    // create file name
+    link.download = "markdown.md";
+    link.href = fileUrl;
+    // click to download
+    link.click();
+  };
+
   return (
     <div className="min-h-screen">
       <nav className="flex justify-between items-center w-full p-5">
         <h1 className="text-3xl font-bold text-center">Markdown Editor</h1>
-        <button className="rounded-md bg-blue-600 p-3 text-white hover:bg-blue-800">
+        <button
+          className="rounded-md bg-blue-600 p-3 text-white hover:bg-blue-800"
+          onClick={handleDownload}
+        >
           Download
         </button>
       </nav>
