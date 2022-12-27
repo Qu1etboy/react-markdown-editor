@@ -61,7 +61,10 @@ function App() {
         </ReactMarkdown>
       </div>
       <footer className="text-center mt-2 text-gray-800 text-sm">
-        @qu1etboy. All right reserved.
+        <a href="https://github.com/qu1etboy" target="_blank" rel="noreferrer">
+          @qu1etboy.
+        </a>{" "}
+        All right reserved.
       </footer>
     </div>
   );
