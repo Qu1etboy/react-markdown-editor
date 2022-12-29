@@ -3,7 +3,6 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Editor from "@monaco-editor/react";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import DownloadModal from "../components/DownloadModal";
 
 function App() {
   const [value, setValue] = useState(() => {
