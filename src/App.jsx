@@ -39,6 +39,8 @@ function App() {
     link.href = fileUrl;
     // click to download
     link.click();
+
+    setOpenModal(false);
   };
 
   return (
