@@ -1,16 +1,21 @@
-# Markdown editor
-Built in 1 hour. Quality == 0
+# Markdown Editor
 
-# Getting Started with Create React App
+[![Deploy with Vercel](https://vercel.com/button)](https://react-markdown-editor-beta.vercel.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A markdown editor built with React.js and TailwindCSS
 
-## Available Scripts
+## Library used
 
-In the project directory, you can run:
+- [@monaco-editor/react](https://github.com/suren-atoyan/monaco-react)
+- [React-Markdown](https://github.com/remarkjs/react-markdown)
+- [Tailwind Typography](https://github.com/tailwindlabs/tailwindcss-typography)
 
-### `npm start`
+## Run locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+required Node.js
 
+```bash
+git clone https://github.com/Qu1etboy/react-markdown-editor.git
+cd react-markdown-editor
+npm run dev
+```
