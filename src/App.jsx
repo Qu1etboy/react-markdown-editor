@@ -1,10 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Editor from "@monaco-editor/react";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 function App() {
+  const editorRef = useRef(null);
+
+  function handleEditorDidMount(editor, monaco) {
+    editorRef.current = editor;
+  }
+
   const [value, setValue] = useState(() => {
     const saveValue = window.localStorage.getItem("value");
 
@@ -43,18 +49,41 @@ function App() {
     setOpenModal(false);
   };
 
+  const handleFileInput = (e) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      editorRef.current.setValue(event.target.result);
+      setValue(event.target.result);
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+
   return (
     <div className="min-h-screen w-full">
       <nav className="flex justify-between items-center w-full p-5">
         <h1 className="text-xl md:text-2xl font-bold text-center">
           Markdown Editor
         </h1>
-        <button
-          className="rounded-md bg-blue-600 text-sm p-3 text-white hover:bg-blue-800"
-          onClick={() => setOpenModal(true)}
-        >
-          Download
-        </button>
+        <div className="flex items-center gap-2">
+          <input
+            type="file"
+            id="selectedFile"
+            onChange={handleFileInput}
+            className="hidden"
+          />
+          <button
+            className="rounded-md bg-green-600 text-sm p-3 text-white hover:bg-green-800"
+            onClick={() => document.getElementById("selectedFile").click()}
+          >
+            import
+          </button>
+          <button
+            className="rounded-md bg-blue-600 text-sm p-3 text-white hover:bg-blue-800"
+            onClick={() => setOpenModal(true)}
+          >
+            Download
+          </button>
+        </div>
       </nav>
       {openModal && (
         <>
@@ -94,9 +123,11 @@ function App() {
       )}
       <div className="flex flex-col lg:grid grid-cols-2 border">
         <Editor
+          onMount={handleEditorDidMount}
           height="80vh"
           defaultLangauge="markdown"
           defaultValue={value}
+          setValue={value}
           onChange={(e) => setValue(e)}
           theme="light"
           className="z-0"
